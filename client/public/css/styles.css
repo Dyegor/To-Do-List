@@ -57,6 +57,11 @@ body {
   text-align: center;
 }
 
+.dropdown-item {
+  padding-right: 0;
+  font-size: 1.5em;
+}
+
 .item:last-child {
   border-bottom: 0;
 }
@@ -121,6 +126,7 @@ div.item:hover button {
 }
 
 .listItem {
+  font-size: 1.5em;
   width: 330px;
 }
 
@@ -138,7 +144,7 @@ input[type="text"] {
   top: 10px;
   border: none;
   background: transparent;
-  font-size: 20px;
+  font-size: 1.8em;
   font-weight: 200;
 }
 
@@ -155,6 +161,7 @@ input[type="text"]:focus {
 /* Dropdown Menu */
 
 .dropdown-menu {
+  padding: 0;
   background-color: #f9f7cf;
 }
 
