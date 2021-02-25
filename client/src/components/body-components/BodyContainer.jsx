@@ -1,7 +1,4 @@
 import React, { Component } from "react";
-import uuid from 'react-uuid';
-import axios from 'axios';
-import Context from "../context/Context";
 import InputContainer from "./input-container-components/InputContainer";
 import Footer from "../footer-components/Footer";
 
@@ -22,12 +19,9 @@ export default class BodyContainer extends Component {
     }
 
     render() {
-
         return (
             <div className="main-container">
-                <Context.Provider>
-                    <InputContainer />
-                </Context.Provider>
+                <InputContainer />
                 <Footer />
             </div>
         );
