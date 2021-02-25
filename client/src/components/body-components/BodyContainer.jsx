@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import axios from 'axios';
 import InputContainer from "./input-container-components/InputContainer";
 import Footer from "../footer-components/Footer";
 
@@ -16,6 +17,18 @@ export default class BodyContainer extends Component {
             },
             listItems: []
         };
+    }
+
+    componentDidMount() {
+        axios.get('v1/names')
+            .then(response => {
+                const listItems = response.data;
+                listItems.forEach(item => {
+                    this.setState({
+                        existingListNames: [...this.state.existingListNames, item.name]
+                    })
+                })
+            })
     }
 
     render() {
