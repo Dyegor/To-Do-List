@@ -1,5 +1,15 @@
 # To-Do-List
-ReactJS + ExpressJS task manager app
+ReactJS + NodeJS task manager app
+
+## Technologies used
+* React
+* NodeJS
+* Html
+* CSS
+* MongoDB
+
+## Live Demo
+http://128.199.231.48/
 
 ## Screenshot
 ![p-1](https://user-images.githubusercontent.com/18030933/106836703-89873d00-66fe-11eb-82ea-d2d0e1a6daf9.jpg)
@@ -24,12 +34,3 @@ Data can be sorted and saved in a defferent lists
 1. Create .env file in root directory and add your environmet variables to access db
 2. `cd server/`
 3. `nodemon server`
-
-## Technologies used
-* ReactJS
-* ExpressJS
-* Html
-* CSS
-* MongoDB
-
-## Live Demo
