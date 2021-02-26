@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import axios from 'axios';
+import Context from "../context/Context";
 import InputContainer from "./input-container-components/InputContainer";
 import Footer from "../footer-components/Footer";
 
@@ -17,6 +18,8 @@ export default class BodyContainer extends Component {
             },
             listItems: []
         };
+
+        this.onGetList = this.onGetList.bind(this);
     }
 
     componentDidMount() {
@@ -52,9 +55,13 @@ export default class BodyContainer extends Component {
     }
 
     render() {
+        const currentList = this.onGetList;
+
         return (
             <div className="main-container">
-                <InputContainer />
+                <Context.Provider value={{currentList}}>
+                    <InputContainer />
+                </Context.Provider>
                 <Footer />
             </div>
         );
