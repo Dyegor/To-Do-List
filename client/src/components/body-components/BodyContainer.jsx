@@ -31,6 +31,26 @@ export default class BodyContainer extends Component {
             })
     }
 
+    onGetList(listName) {
+        axios.get('v1/', { params: { listName: listName } })
+            .then(response => {
+                const toDoItems = response.data[0].listItems;
+
+                this.setState({
+                    listName: listName,
+                    listItems: []
+                });
+
+                toDoItems.forEach(item => {
+                    this.setState({
+                        listItems: [...this.state.listItems, item]
+                    });
+                });
+            }).catch(error => {
+                console.log(error);
+            });
+    }
+
     render() {
         return (
             <div className="main-container">
