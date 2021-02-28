@@ -21,6 +21,7 @@ export default class BodyContainer extends Component {
         };
 
         this.onListNameChange = this.onListNameChange.bind(this);
+        this.onItemChange = this.onItemChange.bind(this);
         this.onGetList = this.onGetList.bind(this);
     }
 
@@ -62,16 +63,48 @@ export default class BodyContainer extends Component {
         });
     }
 
+    onItemChange(event) {
+        this.setState({
+            item: {
+                id: uuid(),
+                [event.target.name]: event.target.value
+            }
+        });
+    }
+
+    onItemAdd(event) {
+        event.preventDefault();
+
+        const { item } = this.state;
+        this.setState({
+            listItems: [...this.state.listItems, item],
+            item: {
+                id: '',
+                toDo: ''
+            }
+        });
+
+        document.getElementById('formItem').reset();
+    }
+
+    onItemRemove(key) {
+        this.setState(prevState => ({
+            listItems: prevState.listItems.filter(item => item.id !== key)
+        }));
+    }
+
     render() {
         const currentList = this.onGetList;
         const currentListName = this.onListNameChange;
+        const currentItem = this.onItemChange;
 
         return (
             <div className="main-container">
                 <Context.Provider
                     value={{
                         currentList,
-                        currentListName
+                        currentListName,
+                        currentItem
                     }}
                 >
                     <InputContainer />
