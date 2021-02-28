@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import uuid from 'react-uuid';
 import axios from 'axios';
 import Context from "../context/Context";
 import InputContainer from "./input-container-components/InputContainer";
@@ -19,6 +20,7 @@ export default class BodyContainer extends Component {
             listItems: []
         };
 
+        this.onListNameChange = this.onListNameChange.bind(this);
         this.onGetList = this.onGetList.bind(this);
     }
 
@@ -54,12 +56,24 @@ export default class BodyContainer extends Component {
             });
     }
 
+    onListNameChange(event) {
+        this.setState({
+            [event.target.name]: event.target.value
+        });
+    }
+
     render() {
         const currentList = this.onGetList;
+        const currentListName = this.onListNameChange;
 
         return (
             <div className="main-container">
-                <Context.Provider value={{currentList}}>
+                <Context.Provider
+                    value={{
+                        currentList,
+                        currentListName
+                    }}
+                >
                     <InputContainer />
                 </Context.Provider>
                 <Footer />
