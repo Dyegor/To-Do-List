@@ -72,31 +72,11 @@ export default class BodyContainer extends Component {
         });
     }
 
-    onItemAdd(event) {
-        event.preventDefault();
-
-        const { item } = this.state;
-        this.setState({
-            listItems: [...this.state.listItems, item],
-            item: {
-                id: '',
-                toDo: ''
-            }
-        });
-
-        document.getElementById('formItem').reset();
-    }
-
-    onItemRemove(key) {
-        this.setState(prevState => ({
-            listItems: prevState.listItems.filter(item => item.id !== key)
-        }));
-    }
-
     render() {
         const currentList = this.onGetList;
         const currentListName = this.onListNameChange;
         const currentItem = this.onItemChange;
+        const { listItems, existingListNames, listName } = this.state;
 
         return (
             <div className="main-container">
@@ -104,7 +84,10 @@ export default class BodyContainer extends Component {
                     value={{
                         currentList,
                         currentListName,
-                        currentItem
+                        currentItem,
+                        listItems,
+                        existingListNames,
+                        listName
                     }}
                 >
                     <InputContainer />
