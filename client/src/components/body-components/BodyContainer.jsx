@@ -22,6 +22,7 @@ export default class BodyContainer extends Component {
 
         this.onListNameChange = this.onListNameChange.bind(this);
         this.onItemChange = this.onItemChange.bind(this);
+        this.onItemAdd = this.onItemAdd.bind(this);
         this.onGetList = this.onGetList.bind(this);
     }
 
@@ -72,10 +73,26 @@ export default class BodyContainer extends Component {
         });
     }
 
+    onItemAdd(event) {
+        event.preventDefault();
+
+        const { item } = this.state;
+        this.setState({
+            listItems: [...this.state.listItems, item],
+            item: {
+                id: '',
+                toDo: ''
+            }
+        });
+
+        document.getElementById('formItem').reset();
+    }
+
     render() {
         const currentList = this.onGetList;
         const currentListName = this.onListNameChange;
         const currentItem = this.onItemChange;
+        const addItem = this.onItemAdd;
         const { listItems, existingListNames, listName } = this.state;
 
         return (
@@ -85,6 +102,7 @@ export default class BodyContainer extends Component {
                         currentList,
                         currentListName,
                         currentItem,
+                        addItem,
                         listItems,
                         existingListNames,
                         listName
