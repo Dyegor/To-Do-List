@@ -23,6 +23,7 @@ export default class BodyContainer extends Component {
         this.onListNameChange = this.onListNameChange.bind(this);
         this.onItemChange = this.onItemChange.bind(this);
         this.onItemAdd = this.onItemAdd.bind(this);
+        this.onItemRemove = this.onItemRemove.bind(this);
         this.onGetList = this.onGetList.bind(this);
     }
 
@@ -88,11 +89,18 @@ export default class BodyContainer extends Component {
         document.getElementById('formItem').reset();
     }
 
+    onItemRemove(key) {
+        this.setState(prevState => ({
+            listItems: prevState.listItems.filter(item => item.id !== key)
+        }));
+    }
+
     render() {
         const currentList = this.onGetList;
         const currentListName = this.onListNameChange;
         const currentItem = this.onItemChange;
         const addItem = this.onItemAdd;
+        const removeItem = this.onItemRemove;
         const { listItems, existingListNames, listName } = this.state;
 
         return (
@@ -103,6 +111,7 @@ export default class BodyContainer extends Component {
                         currentListName,
                         currentItem,
                         addItem,
+                        removeItem,
                         listItems,
                         existingListNames,
                         listName
