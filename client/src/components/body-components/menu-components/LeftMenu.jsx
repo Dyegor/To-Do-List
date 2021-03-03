@@ -1,16 +1,17 @@
 import React, { useContext } from "react";
 import Context from "../../context/Context";
+import ListItem from "../listItem-components/ListItem";
 
 export default function LeftMenu() {
-    const { currentList } = useContext(Context);
-    const listToView = "Today Task's";
+    const { existingListNames } = useContext(Context);
     return (
         <ul className="dropdown-menu" aria-labelledby="dropdownMenuButton">
-            <li>
-                <a href="list" onClick={() => currentList(listToView)} className="dropdown-item">
-                    {listToView}
-                </a>
-            </li>
+            {existingListNames.map((listName, index) =>
+                <ListItem
+                    key={index}
+                    listName={listName}
+                />
+            )}
         </ul>
     );
 }
