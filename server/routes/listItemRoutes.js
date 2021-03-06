@@ -25,4 +25,16 @@ router.get("/", async (req, res) => {
     }
 });
 
+router.delete("/", async (req, res) => {
+    try {
+        ListItemsModel.deleteOne({ name: req.body.listName }, err => {
+            err && console.log(err.message);
+        });
+        return res.status(201).json("Item deleted");
+    } catch (err) {
+        console.error(err.message);
+        return res.status(500).json("Internal Server error " + err.message);
+    }
+});
+
 module.exports = router;
