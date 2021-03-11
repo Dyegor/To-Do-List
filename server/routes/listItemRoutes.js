@@ -25,6 +25,27 @@ router.get("/", async (req, res) => {
     }
 });
 
+router.post("/", async (req, res) => {
+    const name = req.body.listName;
+    const listItems = req.body.listItems;
+
+    let list = await ListItemsModel.findOne({ name });
+
+    if (list) {
+        try {
+            await ListItemsModel.findOneAndUpdate({ name }, { listItems });
+            return res.status(201).json("List " + req.body.listName + " added");
+        } catch (err) {
+            console.log(err.message);
+        }
+    } else {
+        const newListItems = new ListItemsModel({name, listItems});
+
+        await newListItems.save();
+        return res.status(201).json(newListItems);
+    }
+});
+
 router.delete("/", async (req, res) => {
     try {
         ListItemsModel.deleteOne({ name: req.body.listName }, err => {
